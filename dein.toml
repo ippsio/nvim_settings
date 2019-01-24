@@ -14,10 +14,28 @@ repo = 'Shougo/unite.vim'
 # colorschema
 [[plugins]]
 repo = 'chriskempson/vim-tomorrow-theme'
+hook_add = '''
+  colorscheme Tomorrow-Night-Bright
+'''
 
 # statusline
 [[plugins]]
 repo = 'itchyny/lightline.vim'
+hook_add = '''
+  set laststatus=2
+  let g:lightline = {
+    \ 'colorscheme': 'wombat',
+    \ 'active': {
+    \   'left': [
+    \     ['mode', 'paste'],
+    \     ['readonly', 'filename', 'modified', 'anzu']
+    \   ]
+    \ },
+    \ 'component_function': {
+    \   'anzu': 'anzu#search_status'
+    \ }
+    \ }
+'''
 
 # インデントを可視化
 [[plugins]]
@@ -30,10 +48,21 @@ repo = 'bronson/vim-trailing-whitespace'
 # j, k移動高速化
 [[plugins]]
 repo = 'rhysd/accelerated-jk'
+hook_add = '''
+  nmap j <Plug>(accelerated_jk_gj)
+  nmap k <Plug>(accelerated_jk_gk)
+'''
 
 # /検索強化
 [[plugins]]
 repo = 'osyo-manga/vim-anzu'
+hook_add = '''
+  nmap n nzz<Plug>(anzu-update-search-status)
+  nmap N Nzz<Plug>(anzu-update-search-status)
+  nmap * <Plug>(anzu-star)
+  nmap # <Plug>(anzu-sharp)
+  nmap <silent> <ESC><ESC> :<C-u>nohlsearch<CR><Plug>(anzu-clear-search-status)
+'''
 
 # f検索強化
 [[plugins]]
